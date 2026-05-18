@@ -3,13 +3,7 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 require('dotenv').config();
 
-// const {
-//   createFruit,
-//   getFruits,
-//   getOneFruit,
-//   updateFruit,
-//   deleteFruit
-// } = require("../controller/fruitcontroler");
+
 const app = express();
 
 // database connection
@@ -17,6 +11,13 @@ const {connecttodatabase} = require('./database/connectiontodatabase.js');
 
 // routes
 const fruitRoutes = require('./routes/approutes');
+// product
+const productRoutes = require('./routes/approutes.js')
+// students 
+const studentRoutes = require('./routes/approutes.js')
+// payments
+const paymentRoutes = require('./routes/approutes.js')
+
 
 // middleware
 app.use(bodyparser.json());
@@ -27,6 +28,14 @@ app.use(bodyparser.urlencoded({ extended: true }));
 
 // use routes
 app.use('/api', fruitRoutes);
+// product 
+app.use('/api', productRoutes);
+// students
+app.use('/api', studentRoutes);
+// payment
+app.use('/api', paymentRoutes);
+
+
 
 // test route
 app.get("/", function (req, res) {
